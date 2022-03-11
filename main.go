@@ -19,15 +19,16 @@ func printstdout() {
 func main() {
 	go printstdout()
 
+	http.HandleFunc("/", healthy)
 	http.HandleFunc("/health", healthy)
 	http.HandleFunc("/ping", pong)
 	http.ListenAndServe(":8090", nil)
 }
 
 func healthy(w http.ResponseWriter, req *http.Request) {
-	fmt.Fprintf(w, "healthy")
+	fmt.Fprintf(w, "healthy...")
 }
 
 func pong(w http.ResponseWriter, req *http.Request) {
-	fmt.Fprintf(w, "pong")
+	fmt.Fprintf(w, "pong - "+time.Now().Local().String())
 }

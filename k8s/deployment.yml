@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: naive-deployment
+  labels:
+    app: naive
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: naive
+  template:
+    metadata:
+      labels:
+        app: naive
+    spec:
+      containers:
+        - name: naive
+          image: naive
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8090
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"

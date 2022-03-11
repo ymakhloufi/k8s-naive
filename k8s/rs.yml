@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: naive-rs
+  labels:
+    revision: v1
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:
+      revision: v1
+  template:
+    metadata:
+      labels:
+        revision: v1
+    spec:
+      containers:
+      - name: naive-rs-go
+        image: naive
+        imagePullPolicy: Never

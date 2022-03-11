@@ -6,7 +6,7 @@ endif
 
 .PHONY: build
 build: ## Build service docker image.
-	go build -mod vendor -o go-app ./main.go
+	go build -a -o go-app ./main.go
 
 .PHONY: image
 image:

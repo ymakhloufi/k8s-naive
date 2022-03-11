@@ -1,8 +1,9 @@
 # Build
 FROM golang:1.17-alpine AS build
 
-#ARG VERSION=snapshot
-#ENV VENDORED=true
+ENV CGO_ENABLED 0
+ENV GOOS linux
+ENV GOARCH amd64
 
 RUN apk --update --no-cache add make
 

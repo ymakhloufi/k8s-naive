@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: naive-cron
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: naive-cron-pod
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: naive-cron-go
+              image: naive
+              imagePullPolicy: Never

@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: naive-job
+spec:
+  template:
+    metadata:
+      name: naive-job-pod
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: naive-job-go
+          image: naive
+          imagePullPolicy: Never

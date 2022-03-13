@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: naive-pod
+spec:
+  containers:
+    - name: naive-job-go
+      image: naive
+      imagePullPolicy: Never

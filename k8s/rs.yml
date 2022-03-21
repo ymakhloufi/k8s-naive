@@ -3,19 +3,27 @@ kind: ReplicaSet
 metadata:
   name: naive-rs
   labels:
-    revision: v1
+    app: naive
 spec:
-  # modify replicas according to your case
   replicas: 3
   selector:
     matchLabels:
-      revision: v1
+      app: naive
   template:
     metadata:
       labels:
-        revision: v1
+        app: naive
     spec:
       containers:
       - name: naive-rs-go
         image: naive
         imagePullPolicy: Never
+        ports:
+            - containerPort: 8090
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

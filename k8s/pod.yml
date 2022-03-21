@@ -7,3 +7,17 @@ spec:
     - name: naive-job-go
       image: naive
       imagePullPolicy: Never
+      resources:
+        requests:
+          memory: "32Mi"
+        limits:
+          memory: "256Mi"
+      livenessProbe:
+        initialDelaySeconds: 5  # start probing 5 seconds after starting container
+        timeoutSeconds: 2       # allow /health to take up to 2 seconds to respond
+        periodSeconds: 10       # probe every 10 seconds
+        failureThreshold: 2     # two successive failed probes (=20 seconds) means unhealthy
+        httpGet:
+          scheme: HTTP
+          port: 8090
+          path: /healthz
